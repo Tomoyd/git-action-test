@@ -5,7 +5,13 @@ on:
     branches: [ main ]
 
 jobs: 
-  test: 
+  test:
+    evn: 
+      MY_SECRET: ${{secrets.CI_TEST}} 
+      USER_NAME   : tomoyd
+      USER_EMAIL  : ydh9419@163.com
+      PUBLISH_DIR : ./dist
+      GITHUB_REPOSITORY: show-ci
     runs-on: ubuntu-latest
     steps:   
       - uses: actions/checkout@v2
@@ -18,12 +24,17 @@ jobs:
 
       - name: Git clone the repository
         run: |
-            git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/Tomoyd/doc-website.git target
-            rm -rf  target/debug.log
-            cd target
-            git add .
-            git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/Tomoyd/doc-website"
-            git push target master
+          cd $PUBLISH_DIR
+          git init
+          git config --local user.email $USER_NAME
+          git config --local user.name $USER_EMAIL
+          git status
+          git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "deploy to Github pages"
+          git push origin gh-pages -f
+          echo 🤘 deploy gh-pages complete.
 
 
        
