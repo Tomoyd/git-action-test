@@ -30,7 +30,7 @@ jobs:
           git config --local user.name $USER_EMAIL
           git status
           git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
-          echo https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
+          echo https://$MY_SECRET@github.com/show-ci.git
           git checkout -b gh-pages
           git add --all
           git commit -m "deploy to Github pages"
