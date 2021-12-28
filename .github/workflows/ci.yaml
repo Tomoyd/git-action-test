@@ -20,7 +20,6 @@ jobs:
         run: |
             git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/Tomoyd/doc-website.git target
             rm -rf !(.git) 
-      - name:      
             copy index.html target
             cd target
             git add .
