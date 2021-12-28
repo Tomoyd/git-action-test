@@ -19,8 +19,8 @@ jobs:
       - name: Git clone the repository
         run: |
             git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/Tomoyd/doc-website target
-            rm everything but the .git directory
-            copy source\files target
+            rm -rf !(.git) 
+            copy index.html target
             cd target
             git add .
             git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/Tomoyd/doc-website"
