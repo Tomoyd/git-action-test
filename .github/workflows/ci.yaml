@@ -16,18 +16,18 @@ jobs:
       - name: Install package
         run: yarn install
 
-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git clone the repository
-      - uses: actions/checkout@v1
-        run: |
-            git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/Tomoyd/doc-website target
-            rm everything but the .git directory
-            copy source\files targetå
-            cd target
-            git add .
-            git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/Tomoyd/doc-website"
-            git push target master
+  deploy:
+     runs-on: ubuntu-latest
+     steps:
+        - name: Git clone the repository
+        - uses: actions/checkout@v1
+          run: |
+              git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/Tomoyd/doc-website target
+              rm everything but the .git directory
+              copy source\files target
+              cd target
+              git add .
+              git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/Tomoyd/doc-website"
+              git push target master
 
 
