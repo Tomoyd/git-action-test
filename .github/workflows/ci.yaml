@@ -6,7 +6,7 @@ on:
 
 jobs: 
   test:
-    evn: 
+    env: 
       MY_SECRET: ${{secrets.CI_TEST}} 
       USER_NAME   : tomoyd
       USER_EMAIL  : ydh9419@163.com
