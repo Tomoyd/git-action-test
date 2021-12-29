@@ -26,8 +26,8 @@ jobs:
           cd $PUBLISH_DIR
           git init
           git status
-          git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
-          echo https://$MY_SECRET@github.com/show-ci.git
+          git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+          echo https://$MY_SECRET@github.com/Tomoyd/show-ci.git
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git checkout -b gh-pages
