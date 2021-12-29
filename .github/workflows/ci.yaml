@@ -6,7 +6,6 @@ on:
 
 jobs: 
   build:
-
     runs-on: ubuntu-latest
     steps:   
       - uses: actions/checkout@v2
@@ -28,21 +27,20 @@ jobs:
       url: https://tomoyd.github.io/show-ci/
     steps:   
       - uses: actions/checkout@v2
-
       - name: Deploy 
-      run: |
-        cd $PUBLISH_DIR
-        git init
-        git status
-        git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
-        echo https://$MY_SECRET@github.com/Tomoyd/show-ci.git
-        git config user.name 'github-actions[bot]'
-        git config user.email 'github-actions[bot]@users.noreply.github.com'
-        git checkout -b gh-pages
-        git add --all
-        git commit -m "deploy to Github pages"
-        git push origin gh-pages -f
-        echo 🤘 deploy gh-pages complete.
+        run: |
+          cd $PUBLISH_DIR
+          git init
+          git status
+          git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+          echo https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "deploy to Github pages"
+          git push origin gh-pages -f
+          echo 🤘 deploy gh-pages complete.
 
        
 
