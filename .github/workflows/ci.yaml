@@ -5,12 +5,12 @@ on:
     branches: [ main ]
 
 jobs: 
-  test:
+  deploy:
     env: 
       MY_SECRET: ${{secrets.CI_TEST}} 
 
       PUBLISH_DIR : ./dist
-      GITHUB_REPOSITORY: show-ci
+      GITHUB_REPOSITORY: Tomoyd/show-ci
     runs-on: ubuntu-latest
     steps:   
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
           cd $PUBLISH_DIR
           git init
           git status
-          git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+          git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
           echo https://$MY_SECRET@github.com/show-ci.git
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
