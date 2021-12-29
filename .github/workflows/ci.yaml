@@ -6,10 +6,7 @@ on:
 
 jobs: 
   build:
-    env: 
-      MY_SECRET: ${{secrets.CI_TEST}} 
-      PUBLISH_DIR : ./dist
-      GITHUB_REPOSITORY: Tomoyd/show-ci
+
     runs-on: ubuntu-latest
     steps:   
       - uses: actions/checkout@v2
@@ -20,26 +17,32 @@ jobs:
       - name: Install package
         run: yarn install
 
-      - name: Git clone the repository
-        run: |
-          cd $PUBLISH_DIR
-          git init
-          git status
-          git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
-          echo https://$MY_SECRET@github.com/Tomoyd/show-ci.git
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "deploy to Github pages"
-          git push origin gh-pages -f
-          echo 🤘 deploy gh-pages complete.
   deploy:
+    env: 
+      MY_SECRET: ${{secrets.CI_TEST}} 
+      PUBLISH_DIR : ./dist
+      GITHUB_REPOSITORY: Tomoyd/show-ci
     runs-on: ubuntu-latest
     environment: 
       name: production
       url: https://tomoyd.github.io/show-ci/
+    steps:   
+      - uses: actions/checkout@v2
 
+      - name: Deploy 
+      run: |
+        cd $PUBLISH_DIR
+        git init
+        git status
+        git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+        echo https://$MY_SECRET@github.com/Tomoyd/show-ci.git
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
+        git checkout -b gh-pages
+        git add --all
+        git commit -m "deploy to Github pages"
+        git push origin gh-pages -f
+        echo 🤘 deploy gh-pages complete.
 
        
 
