@@ -27,7 +27,6 @@ jobs:
           git init
           git status
           git remote add origin https://$MY_SECRET@github.com/Tomoyd/show-ci.git
-          npx gh-pages --branch master --dist dist --user "github-actions-bot <support+actions@github.com>"
           echo https://$MY_SECRET@github.com/show-ci.git
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
