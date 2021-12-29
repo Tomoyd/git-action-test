@@ -6,6 +6,8 @@ on:
 
 jobs: 
   deploy:
+    environment:
+      url: https://$MY_SECRET@github.com/Tomoyd/show-ci/
     env: 
       MY_SECRET: ${{secrets.CI_TEST}} 
 
